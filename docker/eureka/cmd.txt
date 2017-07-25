@@ -1,5 +1,5 @@
 docker build -t packt/eureka . --network=host
 
-docker network create --subnet=172.18.0.0/16 packtNet
+docker network create --subnet=172.10.0.0/16 packtNet
 
-docker run -d --net packtNet --ip 172.18.0.55 --name eureka packt/eureka
+docker run -d --net packtNet --ip 172.10.0.55 --name eureka packt/eureka
