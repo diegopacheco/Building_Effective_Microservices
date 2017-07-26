@@ -1,0 +1,7 @@
+docker build -t packt/hystrixdash . --network=host
+
+docker network create --subnet=172.10.0.0/16 packtNet
+
+docker run -d --net packtNet --ip 172.10.0.60 --name hystrixdash packt/hystrixdash
+
+curl -v http://172.10.0.60:8080/hystrix-dashboard/
