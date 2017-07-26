@@ -14,6 +14,6 @@ RUN git clone https://github.com/Netflix/eureka.git
 WORKDIR /app/eureka
 RUN git checkout 1.4.x && ./gradlew clean build -x test
 
-COPY /app/eureka/eureka-server/build/libs/eureka-server-*.war /usr/local/tomcat/webapps/eureka.war
+RUN cp /app/eureka/eureka-server/build/libs/eureka-server-*.war /usr/local/tomcat/webapps/eureka.war
 
 EXPOSE 8080
