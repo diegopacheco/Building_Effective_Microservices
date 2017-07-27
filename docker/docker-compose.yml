@@ -1,0 +1,12 @@
+microservice:
+  image: packt/microservice
+  links:
+    - redis
+    - eureka
+    - hystrixdash
+redis:
+  image: redis
+eureka:
+  image: packt/eureka
+hystrixdash:
+  image: packt/hystrixdash
