@@ -18,6 +18,9 @@ minikube stop
 //
 // Microservice
 //
+mkdir build/
+cp -r ../../* build/
+
 minikube start
 eval $(minikube docker-env)
 docker build -t microservice:v1 .
