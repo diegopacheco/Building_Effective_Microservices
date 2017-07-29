@@ -1,0 +1,32 @@
+//
+// Eureka
+//
+minikube start
+eval $(minikube docker-env)
+docker build -t eureka:v1 .
+
+kubectl run eureka --image=eureka:v1 --port=8080
+kubectl expose deployment eureka --type=LoadBalancer
+kubectl get deployments
+kubectl get pods
+kubectl describe pod eureka
+
+kubectl delete service eureka
+kubectl delete deployment eureka
+minikube stop
+
+//
+// Microservice
+//
+minikube start
+eval $(minikube docker-env)
+docker build -t microservice:v1 .
+
+kubectl run microservice --image=microservice:v1 --port=8080
+kubectl expose deployment microservice --type=LoadBalancer
+kubectl get deployments
+kubectl get pods
+
+kubectl delete service microservice
+kubectl delete deployment microservice
+minikube stop
