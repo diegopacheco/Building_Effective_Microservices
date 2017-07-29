@@ -1,12 +1,25 @@
-microservice:
-  image: packt/microservice
-  links:
-    - redis
-    - eureka
-    - hystrixdash
-redis:
-  image: redis
-eureka:
-  image: packt/eureka
-hystrixdash:
-  image: packt/hystrixdash
+version: "3"
+services:
+  microservice:
+    image: packt/microservice
+    networks:
+        default:
+          ipv4_address:  172.10.0.70
+    links:
+      - redis
+      - eureka
+      - hystrixdash
+  redis:
+    image: redis
+  eureka:
+    image: packt/eureka
+    networks:
+        default:
+          ipv4_address:  172.10.0.55
+  hystrixdash:
+    image: packt/hystrixdash
+
+networks:
+    default:
+        external:
+            name: packtNet
