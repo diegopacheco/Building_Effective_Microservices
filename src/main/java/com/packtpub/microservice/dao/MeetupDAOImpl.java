@@ -3,16 +3,22 @@ package com.packtpub.microservice.dao;
 import java.util.HashMap;
 import java.util.Set;
 
+import javax.inject.Inject;
+
 import com.packtpub.microservice.service.Meetup;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
 import rx.Observable;
 
 public class MeetupDAOImpl implements MeetupDAO{
 	
-	private JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost");
+	private JedisPool pool;
+	
+	@Inject
+	public MeetupDAOImpl(JedisPool pool) {
+		this.pool = pool;
+	}
 	
 	@Override
 	public Observable<Void> create(Meetup m) {

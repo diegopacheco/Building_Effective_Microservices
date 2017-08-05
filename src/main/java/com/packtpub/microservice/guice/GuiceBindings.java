@@ -11,6 +11,8 @@ import com.packtpub.microservice.service.MeetupService;
 import com.packtpub.microservice.service.MeetupServiceImpl;
 
 import netflix.karyon.health.HealthCheckHandler;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 public class GuiceBindings extends AbstractModule{
 
@@ -23,6 +25,8 @@ public class GuiceBindings extends AbstractModule{
 		bind(MeetupResource.class).asEagerSingleton();
 		bind(MeetupService.class).to(MeetupServiceImpl.class);
 		bind(MeetupDAO.class).to(MeetupDAOImpl.class);
+		
+		bind(JedisPool.class).toInstance(new JedisPool(new JedisPoolConfig(), "localhost"));
 	}
 	
 }
