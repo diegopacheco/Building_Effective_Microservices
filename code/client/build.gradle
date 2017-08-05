@@ -1,0 +1,9 @@
+dependencies {
+
+	compile([
+		'io.reactivex:rxjava:1.2.6',
+		'com.netflix.feign:feign-core:8.18.0',
+		'com.netflix.feign:feign-gson:8.18.0'
+	])
+
+}

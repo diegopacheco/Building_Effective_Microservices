@@ -1,0 +1,67 @@
+apply plugin: 'application'
+
+version = '1.0'
+
+mainClassName = "com.packtpub.microservice.server.ServerRunner"
+applicationDefaultJvmArgs = [
+								 "-Djava.net.preferIPv4Stack=true",
+								 "-Djava.net.preferIPv6Addresses=false",
+								 "-server",
+								 "-Xmx2048m",
+								 "-Xms128m"
+							]
+
+configurations {
+    all*.exclude group: 'org.mortbay.jetty', module: 'servlet-api'
+}
+
+dependencies {
+
+	compile([
+
+			'io.reactivex:rxnetty-http:0.5.2',
+
+            'org.glassfish.jersey.core:jersey-server:2.7',
+		    'org.glassfish.jersey.containers:jersey-container-servlet-core:2.7',
+		    'org.glassfish.jersey.containers:jersey-container-jetty-http:2.7',
+
+		    'org.slf4j:slf4j-log4j12:1.7.25',
+
+			'com.netflix.servo:servo-core:0.8.+',
+			'com.netflix.karyon:karyon2-servo:2.7.5',
+			'com.scmspain.karyon:karyon2-hystrix-stream:0.1.1',
+
+  			'org.eclipse.jetty:jetty-server:9.3.13.v20161014',
+  			'org.eclipse.jetty:jetty-servlet:9.3.13.v20161014',
+
+			'com.netflix.ribbon:ribbon:2.1.0',
+			'com.netflix.ribbon:ribbon-core:2.1.0',
+			'com.netflix.ribbon:ribbon-httpclient:2.1.0',
+			'com.netflix.ribbon:ribbon-transport:2.1.0',
+			'com.netflix.ribbon:ribbon-loadbalancer:2.1.0',
+			'com.netflix.ribbon:ribbon-httpasyncclient:0.3.13',
+			'com.google.code.gson:gson:2.3.1',
+
+    		'com.netflix.hystrix:hystrix-core:1.4.26',
+			'com.netflix.hystrix:hystrix-metrics-event-stream:1.4.26',
+
+			'com.google.inject.extensions:guice-assistedinject:3.0',
+			'com.google.inject.extensions:guice-multibindings:3.0',
+			'com.google.inject.extensions:guice-servlet:4.0',
+
+			'redis.clients:jedis:2.9.0'
+	])
+
+	compile (group: 'com.netflix.karyon', name: 'karyon2-eureka', version: '2.7.5'){
+	   exclude group: 'javax.servlet'
+	}
+
+	compile (group:  'com.netflix.ribbon', name: 'ribbon-eureka', version: "2.1.0") {
+    	exclude group: 'javax.servlet'
+	}
+
+	compile (group: 'com.netflix.karyon',  name: 'karyon2-admin-healthcheck-plugin',   version: '2.7.5') {
+        exclude group: 'javax.servlet'
+    }
+
+}
