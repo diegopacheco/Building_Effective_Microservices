@@ -1,1 +1,1 @@
-include 'microservice', 'client'
+include 'meetup-microservice', 'client'

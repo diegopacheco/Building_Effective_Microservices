@@ -63,5 +63,10 @@ dependencies {
 	compile (group: 'com.netflix.karyon',  name: 'karyon2-admin-healthcheck-plugin',   version: '2.7.5') {
         exclude group: 'javax.servlet'
     }
+    
+	testCompile([
+		'junit:junit:4.12',
+		'org.mockito:mockito-all:1.10.19'
+	])
 
 }

@@ -19,6 +19,8 @@ public class MeetupServiceImpl implements MeetupService {
 	
 	@Override
 	public Observable<Set<String>> listByType(String typez){
+		if(null==typez || "".equals(typez)) 
+			throw new IllegalArgumentException("Meeutp type cannot be null");
 		return dao.listByType(typez);
 	}
 	
