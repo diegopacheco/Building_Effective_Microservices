@@ -10,6 +10,7 @@ import com.google.inject.Injector;
 import com.packtpub.microservice.rest.MeetupResource;
 
 import io.netty.handler.codec.http.HttpMethod;
+import io.netty.handler.codec.http.HttpResponseStatus;
 import io.reactivex.netty.protocol.http.server.HttpServerRequest;
 import io.reactivex.netty.protocol.http.server.HttpServerResponse;
 import io.reactivex.netty.protocol.http.server.ResponseContentWriter;
@@ -33,18 +34,35 @@ public class RxNettyServiceAdapter implements RequrestAdapter{
 			logger.info("Healthcehcker called");
 			
 		} else if ("/meetup".equals(req.getDecodedPath()) && HttpMethod.PUT.equals(req.getHttpMethod()) ){
-
-			MeetupResource resource = injector.getInstance(MeetupResource.class);
-			ob = resource.create( extractQueryParameter(req,"name"), 
-								  extractQueryParameter(req,"type"));
-			logger.info("Meetup called");
+			
+			try{
+				MeetupResource resource = injector.getInstance(MeetupResource.class);
+				ob = resource.create( extractQueryParameter(req,"name"), 
+									  extractQueryParameter(req,"type"));
+				logger.info("Meetup called");
+			}catch(IllegalArgumentException e){
+				ob = HttpServerResponse.error(e);
+				resp.setStatus(HttpResponseStatus.BAD_REQUEST);
+			}catch(Exception e){
+				ob = HttpServerResponse.error(e);
+				resp.setStatus(HttpResponseStatus.INTERNAL_SERVER_ERROR);
+			}
 			
 		} else if ("/meetup".equals(req.getDecodedPath()) && HttpMethod.GET.equals(req.getHttpMethod()) ){
-
-			MeetupResource resource = injector.getInstance(MeetupResource.class);
-			ob = resource.listByType(extractQueryParameter(req, "type"));
-			ob = transforSettoString(ob);
-			logger.info("Meetup called");
+			
+			try{
+				MeetupResource resource = injector.getInstance(MeetupResource.class);
+				ob = resource.listByType(extractQueryParameter(req, "type"));
+				ob = transforSettoString(ob);
+				logger.info("Meetup called");
+			}catch(IllegalArgumentException e){
+				ob = HttpServerResponse.error(e);
+				resp.setStatus(HttpResponseStatus.BAD_REQUEST);
+			}
+			catch(Exception e){
+				ob = HttpServerResponse.error(e);
+				resp.setStatus(HttpResponseStatus.INTERNAL_SERVER_ERROR);
+			}				
 			
 		} else{
 			ob = Observable.empty();

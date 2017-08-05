@@ -10,8 +10,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.log4j.Logger;
-
 import com.packtpub.microservice.service.Meetup;
 import com.packtpub.microservice.service.MeetupService;
 
@@ -22,7 +20,6 @@ import scmspain.karyon.restrouter.annotation.QueryParam;
 @Path("/meetup")
 public class MeetupResource {
 	
-	private final static Logger logger = Logger.getLogger(MeetupResource.class);
 	private MeetupService service;
 	
 	@Inject
@@ -33,25 +30,14 @@ public class MeetupResource {
 	@PUT
 	@Produces(MediaType.TEXT_PLAIN)
 	public Observable<Void> create(@QueryParam("name") String name,@QueryParam("type") String typez) {
-		try {
-			Meetup m = new Meetup(name,typez);
-			return service.create(m);
-		} catch (Exception e) {
-			logger.error("Error creating meetup. EX: ", e);
-			throw new RuntimeException(e);
-		}
+		Meetup m = new Meetup(name,typez);
+		return service.create(m);
 	}
 	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public Observable<Set<String>> listByType(String typez) {
-		try {
-			return service.listByType(typez);
-		} catch (Exception e) {
-			logger.error("Error creating meetup. EX: ", e);
-			throw new RuntimeException(e);
-		}
+		return service.listByType(typez);
 	}
-	
 	
 }
