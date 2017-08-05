@@ -52,8 +52,7 @@ dependencies {
 
   			  'org.eclipse.jetty:jetty-server:9.3.13.v20161014',
   			  'org.eclipse.jetty:jetty-servlet:9.3.13.v20161014',
-  			  'com.google.inject.extensions:guice-servlet:4.0',
-
+  	
 			  'com.netflix.ribbon:ribbon:2.1.0',
 			  'com.netflix.ribbon:ribbon-core:2.1.0',
 			  'com.netflix.ribbon:ribbon-httpclient:2.1.0',
@@ -67,20 +66,11 @@ dependencies {
 
 			  'com.google.inject.extensions:guice-assistedinject:3.0',
 			  'com.google.inject.extensions:guice-multibindings:3.0',
+			  'com.google.inject.extensions:guice-servlet:4.0',
+			  
+			  'redis.clients:jedis:2.9.0'
 	])
 
-
-	compile (group: 'com.netflix.karyon', name: 'karyon2-admin', version: '2.7.5'){
-	   exclude group: 'javax.servlet'
-	   exclude group: 'org.mortbay.jetty'
-	   exclude group: 'org.mortbay.jetty', module: 'servlet-api'
-	}
-
-	compile (group: 'com.netflix.karyon', name: 'karyon2-admin-web', version: '2.7.5'){
-	   exclude group: 'javax.servlet'
-	   exclude group: 'org.mortbay.jetty'
-	   exclude group: 'org.mortbay.jetty', module: 'servlet1-api'
-	}
 
 	compile (group: 'com.netflix.karyon', name: 'karyon2-eureka', version: '2.7.5'){
 	   exclude group: 'javax.servlet'

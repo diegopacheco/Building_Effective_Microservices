@@ -11,7 +11,7 @@ public class ServerRunner {
 		
 		Module[] modules = new Module[]{
 				new GuiceBindings(),
-				new KaryonEurekaModule() 
+				//new KaryonEurekaModule() 
 		};
 		
 		RxNettyServer server = new RxNettyServer();
