@@ -1,6 +1,7 @@
 package com.packtpub.microservice.guice;
 
 import com.google.inject.AbstractModule;
+import com.netflix.config.ConfigurationManager;
 import com.packtpub.microservice.dao.MeetupDAO;
 import com.packtpub.microservice.dao.MeetupDAOImpl;
 import com.packtpub.microservice.healthchecker.HealthcheckResource;
@@ -26,7 +27,10 @@ public class GuiceBindings extends AbstractModule{
 		bind(MeetupService.class).to(MeetupServiceImpl.class);
 		bind(MeetupDAO.class).to(MeetupDAOImpl.class);
 		
-		bind(JedisPool.class).toInstance(new JedisPool(new JedisPoolConfig(), "localhost"));
+		bind(JedisPool.class).toInstance(
+				new JedisPool(
+						new JedisPoolConfig(), 
+						 ConfigurationManager.getConfigInstance().getString("redis.ip","localhost")));
 	}
 	
 }
