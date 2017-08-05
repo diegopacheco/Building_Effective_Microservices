@@ -20,14 +20,23 @@ public class MicroserviceProxyImpl implements RxMeetupMicroservice{
 				target(MeetupMicroservice.class,"http://localhost:9090/");
 	}
 	
+	public MicroserviceProxyImpl(MeetupMicroservice proxy) {
+		this.proxy = proxy;
+	}
+	
 	@Override
 	public Observable<Void> create(String name, String typez) {
+		if(null==name ||  "".equals(name)) throw new IllegalArgumentException("Meeutp name cannot be null");
+		if(null==typez || "".equals(typez))  throw new IllegalArgumentException("Meeutp type cannot be null");
+		
 		proxy.create(name, typez);
 		return Observable.empty();
 	}
 	
 	@Override
 	public Observable<Set<String>> listByType(String typez) {
+		if(null==typez || "".equals(typez))  throw new IllegalArgumentException("Meeutp type cannot be null");
+		
 		String[] rawResult = proxy.listByType(typez).meetups;
 		Set<String> set = new HashSet<String>(Arrays.asList(rawResult));
 		return Observable.just(set);
