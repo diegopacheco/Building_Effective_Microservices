@@ -4,9 +4,10 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 
+import io.reactivex.netty.RxNetty;
 import io.reactivex.netty.protocol.http.server.HttpServer;
 
-@SuppressWarnings({"rawtypes","unchecked"})
+@SuppressWarnings({"rawtypes"})
 public class RxNettyServer {
 	
 	private Injector injector;
@@ -30,8 +31,10 @@ public class RxNettyServer {
 		this.adapter = injector.getInstance(RequrestAdapter.class);
 		this.adapter.setInjector(injector);
 		
-		server = HttpServer.newServer(port);
-		server.start( (req, resp) -> adapter.routeRequest(req, resp) ).awaitShutdown();
+		server = RxNetty.createHttpServer(port,
+			(req, resp) -> adapter.handle(req, resp)
+		);
+		server.startAndWait();
 	}
 	
 }

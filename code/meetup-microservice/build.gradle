@@ -19,7 +19,7 @@ dependencies {
 
 	compile([
 
-			'io.reactivex:rxnetty-http:0.5.2',
+			'io.reactivex:rxnetty-http:0.5.1',
 
             'org.glassfish.jersey.core:jersey-server:2.7',
 		    'org.glassfish.jersey.containers:jersey-container-servlet-core:2.7',
@@ -29,6 +29,8 @@ dependencies {
 
 			'com.netflix.servo:servo-core:0.8.+',
 			'com.netflix.karyon:karyon2-servo:2.7.5',
+			'com.netflix.karyon:karyon2-core:2.7.5',
+			'com.netflix.karyon:karyon2-jersey-blocking:2.7.5',
 			'com.scmspain.karyon:karyon2-hystrix-stream:0.1.1',
 
   			'org.eclipse.jetty:jetty-server:9.3.13.v20161014',

@@ -26,11 +26,12 @@ public class GuiceBindings extends AbstractModule{
 		bind(MeetupResource.class).asEagerSingleton();
 		bind(MeetupService.class).to(MeetupServiceImpl.class);
 		bind(MeetupDAO.class).to(MeetupDAOImpl.class);
-		
+
 		bind(JedisPool.class).toInstance(
 				new JedisPool(
 						new JedisPoolConfig(), 
 						 ConfigurationManager.getConfigInstance().getString("redis.ip","localhost")));
+		
 	}
 	
 }

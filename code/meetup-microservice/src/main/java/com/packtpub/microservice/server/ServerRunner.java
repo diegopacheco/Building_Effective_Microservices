@@ -3,8 +3,6 @@ package com.packtpub.microservice.server;
 import com.google.inject.Module;
 import com.packtpub.microservice.guice.GuiceBindings;
 
-import netflix.karyon.eureka.KaryonEurekaModule;
-
 public class ServerRunner {
 	
 	public static void main(String[] args) {
