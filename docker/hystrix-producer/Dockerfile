@@ -10,6 +10,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 WORKDIR /app/microservice/
 COPY build/ /app/microservice/
+RUN ./gradlew clean build
 EXPOSE 7070
 
 CMD ["./gradlew","run"]
