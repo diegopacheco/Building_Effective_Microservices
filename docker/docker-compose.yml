@@ -11,6 +11,7 @@ services:
       - hystrixdash
     environment:
         - redis_ip=redis
+        - eureka_registry=true
   redis:
     image: redis
     networks:
