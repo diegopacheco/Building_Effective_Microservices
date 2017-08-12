@@ -36,57 +36,58 @@ public class RxNettyServiceAdapter extends JerseyBasedRouter implements Requrest
 	private Observable routeRequest(HttpServerRequest req, HttpServerResponse resp) {
 		Observable ob = null;
 		
-		if ("/favicon.ico".equals(req.getUri())) 
-			return Observable.empty();
+		if (req.getUri().startsWith("/favicon.ico")) 
+			return Observable.just("");
 		
-		if("/healthcheck".equals(req.getPath())){
+		if(req.getUri().startsWith("/healthcheck")){
 			HealthCheckHandler healthChecker = injector.getInstance(HealthCheckHandler.class);
 			ob = Observable.just( healthChecker.getStatus() );
 			logger.info("Healthcehcker called");
 			return ob;
 		} 
 		
-		if ("/ops".equals(req.getPath())) {
+		if (req.getUri().startsWith("/ops")) {
 			ob = new SimpleCommand("[ \"GET /meetup\", \"PUT /meetup\"]").toObservable();
 			logger.info("Ops called");
 			return ob;
 		} 
 		
-		if ("/meetup".equals(req.getPath()) && HttpMethod.PUT.equals(req.getHttpMethod()) ){
+		if (req.getUri().startsWith("/meetup") && HttpMethod.PUT.equals(req.getHttpMethod()) ){
 			try{
 				MeetupResource resource = injector.getInstance(MeetupResource.class);
 				ob = resource.create( extractQueryParameter(req,"name"), 
 									  extractQueryParameter(req,"type"));
 				logger.info("Meetup called");
 			}catch(IllegalArgumentException e){
-				ob = Observable.empty();
+				ob = Observable.just(e.getMessage());
 				resp.setStatus(HttpResponseStatus.BAD_REQUEST);
 			}catch(Exception e){
-				ob = Observable.empty();
+				ob = Observable.just(e.getMessage());
 				resp.setStatus(HttpResponseStatus.INTERNAL_SERVER_ERROR);
 			}
 			return ob;
 		}  
 		
-		if ("/meetup".equals(req.getPath()) && HttpMethod.GET.equals(req.getHttpMethod()) ){
+		if (req.getUri().startsWith("/meetup") && HttpMethod.GET.equals(req.getHttpMethod()) ){
 			try{
 				MeetupResource resource = injector.getInstance(MeetupResource.class);
 				ob = resource.listByType(extractQueryParameter(req, "type"));
 				ob = transforSettoString(ob);
 				logger.info("Meetup called");
 			}catch(IllegalArgumentException e){
-				ob = Observable.empty();
+				ob = Observable.just(e.getMessage());
 				resp.setStatus(HttpResponseStatus.BAD_REQUEST);
 			}
 			catch(Exception e){
-				ob = Observable.empty();
+				ob = Observable.just(e.getMessage());
 				resp.setStatus(HttpResponseStatus.INTERNAL_SERVER_ERROR);
 			}	
 			return ob;
 		}
 		
-		ob = Observable.empty();
-		logger.info("Unhandled method called: " + req.getPath());
+		String msg = "Unhandled method called: " + req.getPath();
+		ob = Observable.just(msg);
+		logger.info(msg);
 		return ob;
 	}
 	

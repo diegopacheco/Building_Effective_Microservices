@@ -1,6 +1,7 @@
 package com.packtpub.microservice.dao;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import com.packtpub.microservice.service.Meetup;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.exceptions.JedisDataException;
 import rx.Observable;
 
 public class MeetupDAOImpl implements MeetupDAO{
@@ -33,8 +35,16 @@ public class MeetupDAOImpl implements MeetupDAO{
 	
 	@Override
 	public Observable<Set<String>> listByType(String typez){
+
 		try (Jedis jedis = pool.getResource()) {
-			return Observable.just(jedis.hkeys(typez) );
+			
+			Set<String> result = null;
+			try{
+				result = jedis.hkeys(typez);
+				return Observable.just(result);
+			}catch(JedisDataException jde){
+				return Observable.just(new HashSet<>());
+			}
 		}
 	}
 	
