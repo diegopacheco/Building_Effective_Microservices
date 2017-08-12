@@ -106,6 +106,37 @@ public class RxNettyServiceAdapter extends JerseyBasedRouter implements Requrest
 			return ob;
 		}
 		
+		if (req.getPath().startsWith("/calc/slow") && HttpMethod.GET.equals(req.getHttpMethod()) ){
+			try{
+				CalculatorResource resource = injector.getInstance(CalculatorResource.class);
+				ob = resource.slow( extractQueryParameter(req,"a"), 
+									  extractQueryParameter(req,"b"));
+				logger.info("/calc/slow/ called");
+			}catch(IllegalArgumentException e){
+				ob = Observable.empty();
+				resp.setStatus(HttpResponseStatus.BAD_REQUEST);
+			}catch(Exception e){
+				ob = Observable.empty();
+				resp.setStatus(HttpResponseStatus.INTERNAL_SERVER_ERROR);
+			}
+			return ob;
+		}
+		
+		if (req.getPath().startsWith("/calc/err") && HttpMethod.GET.equals(req.getHttpMethod()) ){
+			try{
+				CalculatorResource resource = injector.getInstance(CalculatorResource.class);
+				ob = resource.err();
+				logger.info("/calc/slow/ called");
+			}catch(IllegalArgumentException e){
+				ob = Observable.empty();
+				resp.setStatus(HttpResponseStatus.BAD_REQUEST);
+			}catch(Exception e){
+				ob = Observable.empty();
+				resp.setStatus(HttpResponseStatus.INTERNAL_SERVER_ERROR);
+			}
+			return ob;
+		}
+		
 		ob = Observable.empty();
 		logger.info("Unhandled method called: " + req.getPath());
 		return ob;

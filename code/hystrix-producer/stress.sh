@@ -8,5 +8,7 @@ do
   curl -S "http://localhost:7070/calc/sub?a=25&b=$i"
   curl -S "http://localhost:7070/calc/mul?a=25&b=$i"
   curl -S "http://localhost:7070/calc/div?a=25&b=$i"
+  curl -S "http://localhost:7070/calc/slow?a=25&b=$i"
+  curl -S "http://localhost:7070/calc/err"
   i=$(( $i + 1 ))
 done

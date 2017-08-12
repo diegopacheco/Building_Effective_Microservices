@@ -11,5 +11,9 @@ public interface CalculatorService {
 	public Observable<Double> mul(Double a, Double b);
 
 	public Observable<Double> div(Double a, Double b);
+	
+	public Observable<Double> slow(Double a, Double b);
+	
+	public Observable<Double> err();
 
 }

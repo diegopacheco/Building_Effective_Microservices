@@ -1,7 +1,9 @@
 package com.packtpub.hystrix.provider.service;
 
 import com.packtpub.hystrix.provider.service.hystrix.DivCommand;
+import com.packtpub.hystrix.provider.service.hystrix.ErrCommand;
 import com.packtpub.hystrix.provider.service.hystrix.MulCommand;
+import com.packtpub.hystrix.provider.service.hystrix.SlowCommand;
 import com.packtpub.hystrix.provider.service.hystrix.SubCommand;
 import com.packtpub.hystrix.provider.service.hystrix.SumCommand;
 
@@ -31,6 +33,17 @@ public class CalculatorServiceImpl implements CalculatorService {
 	public Observable<Double> div(Double a, Double b){
 		validate(a, b);
 		return new DivCommand(a, b).toObservable();
+	}
+	
+	@Override
+	public Observable<Double> err(){
+		return new ErrCommand().toObservable();
+	}
+	
+	@Override
+	public Observable<Double> slow(Double a, Double b){
+		validate(a, b);
+		return new SlowCommand(a, b).toObservable();
 	}
 	
 	private void validate(Double a, Double b) {

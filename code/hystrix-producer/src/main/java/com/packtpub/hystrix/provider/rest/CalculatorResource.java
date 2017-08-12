@@ -51,4 +51,18 @@ public class CalculatorResource {
 		return service.div(a,b);
 	}
 	
+	@GET
+	@Path("/slow")
+	@Produces(MediaType.TEXT_PLAIN)
+	public Observable<Double> slow(@QueryParam("a") Double a,@QueryParam("b") Double b) {
+		return service.slow(a,b);
+	}
+	
+	@GET
+	@Path("/err")
+	@Produces(MediaType.TEXT_PLAIN)
+	public Observable<Double> err() {
+		return service.err();
+	}
+	
 }

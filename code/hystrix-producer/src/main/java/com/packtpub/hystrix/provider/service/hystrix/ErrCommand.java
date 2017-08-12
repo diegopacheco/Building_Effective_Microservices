@@ -6,15 +6,10 @@ import com.netflix.hystrix.HystrixObservableCommand;
 import rx.Observable;
 import rx.Subscriber;
 
-public class SlowCommand extends HystrixObservableCommand<Double> {
+public class ErrCommand extends HystrixObservableCommand<Double> {
 	
-    private final Double a;
-    private final Double b;
-
-    public SlowCommand(Double a,Double b) {
+    public ErrCommand() {
         super(HystrixCommandGroupKey.Factory.asKey("HystrixGroup"));
-        this.a = a;
-        this.b = b;
     }
 
     @Override
@@ -24,9 +19,7 @@ public class SlowCommand extends HystrixObservableCommand<Double> {
             public void call(Subscriber<? super Double> observer) {
                 try {
                     if (!observer.isUnsubscribed()) {
-                    	Thread.sleep(3000);
-                        observer.onNext((a+b));
-                        observer.onCompleted();
+                    	throw new RuntimeException("Error by Design!");
                     }
                 } catch (Exception e) {
                     observer.onError(e);
@@ -34,10 +27,4 @@ public class SlowCommand extends HystrixObservableCommand<Double> {
             }
          } );
     }
-    
-    @Override
-    protected Observable<Double> resumeWithFallback() {
-    	return Observable.just(a+b);
-    }
-    
 }
