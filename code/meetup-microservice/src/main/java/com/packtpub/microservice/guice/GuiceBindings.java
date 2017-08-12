@@ -30,7 +30,7 @@ public class GuiceBindings extends AbstractModule{
 		bind(JedisPool.class).toInstance(
 				new JedisPool(
 						new JedisPoolConfig(), 
-						 ConfigurationManager.getConfigInstance().getString("redis.ip","localhost")));
+						 ConfigurationManager.getConfigInstance().getString("redis_ip","localhost")));
 		
 	}
 	
