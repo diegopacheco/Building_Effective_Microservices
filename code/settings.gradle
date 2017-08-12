@@ -1,1 +1,1 @@
-include 'meetup-microservice', 'client'
+include 'meetup-microservice', 'client', 'hystrix-producer'

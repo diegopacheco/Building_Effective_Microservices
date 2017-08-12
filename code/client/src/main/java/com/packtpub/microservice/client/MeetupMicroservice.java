@@ -6,7 +6,7 @@ import feign.RequestLine;
 public interface MeetupMicroservice {
 	
 	@RequestLine("PUT /meetup?name={name}&type={type}")
-	public void create(@Param("name")String name,@Param("type")String typez);
+	public boolean create(@Param("name")String name,@Param("type")String typez);
 	
 	@RequestLine("GET /meetup?type={type}")
 	public MeetupsByType listByType(@Param("type")String typez);

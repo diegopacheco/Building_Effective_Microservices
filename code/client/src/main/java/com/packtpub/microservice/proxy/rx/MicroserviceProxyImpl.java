@@ -25,7 +25,7 @@ public class MicroserviceProxyImpl implements RxMeetupMicroservice{
 	}
 	
 	@Override
-	public Observable<Void> create(String name, String typez) {
+	public Observable<Boolean> create(String name, String typez) {
 		if(null==name ||  "".equals(name)) throw new IllegalArgumentException("Meeutp name cannot be null");
 		if(null==typez || "".equals(typez))  throw new IllegalArgumentException("Meeutp type cannot be null");
 		

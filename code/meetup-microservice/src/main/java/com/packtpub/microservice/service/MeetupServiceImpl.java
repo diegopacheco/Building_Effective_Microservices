@@ -25,7 +25,7 @@ public class MeetupServiceImpl implements MeetupService {
 	}
 	
 	@Override
-	public Observable<Void> create(Meetup m) {
+	public Observable<Boolean> create(Meetup m) {
 		validate(m);
 		return dao.create(m);
 	}

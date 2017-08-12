@@ -6,7 +6,7 @@ import rx.Observable;
 
 public interface RxMeetupMicroservice {
 	
-	public Observable<Void> create(String name,String typez);
+	public Observable<Boolean> create(String name,String typez);
 	
 	public Observable<Set<String>> listByType(String typez);
 	

@@ -29,7 +29,7 @@ public class MeetupResource {
 	
 	@PUT
 	@Produces(MediaType.TEXT_PLAIN)
-	public Observable<Void> create(@QueryParam("name") String name,@QueryParam("type") String typez) {
+	public Observable<Boolean> create(@QueryParam("name") String name,@QueryParam("type") String typez) {
 		Meetup m = new Meetup(name,typez);
 		return service.create(m);
 	}

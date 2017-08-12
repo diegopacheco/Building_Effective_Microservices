@@ -21,14 +21,14 @@ public class MeetupDAOImpl implements MeetupDAO{
 	}
 	
 	@Override
-	public Observable<Void> create(Meetup m) {
+	public Observable<Boolean> create(Meetup m) {
 		
 		try (Jedis jedis = pool.getResource()) {
 			HashMap<String, String> meetups = new HashMap<>();
 			meetups.put(m.getName(), m.getTypez());
 			jedis.hmset(m.getTypez(), meetups);
 		}
-		return Observable.empty();
+		return Observable.just(true);
 	}
 	
 	@Override
