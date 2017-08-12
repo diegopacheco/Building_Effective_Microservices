@@ -2,7 +2,7 @@ apply plugin: 'application'
 
 version = '1.0'
 
-mainClassName = "com.packtpub.microservice.server.ServerRunner"
+mainClassName = "com.packtpub.hystrix.provider.server.ServerRunner"
 applicationDefaultJvmArgs = [
 								 "-Djava.net.preferIPv4Stack=true",
 								 "-Djava.net.preferIPv6Addresses=false",
