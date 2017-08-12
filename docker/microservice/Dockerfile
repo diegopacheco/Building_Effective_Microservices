@@ -10,6 +10,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 WORKDIR /app/microservice/
 COPY build/ /app/microservice/
+RUN ./gradlew clean build
 EXPOSE 9090
 
-CMD ["./gradlew","run"]
+CMD ["./gradlew",":meetup-microservice:run"]
