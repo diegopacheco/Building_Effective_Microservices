@@ -3,8 +3,21 @@ dependencies {
 	compile([
 		'io.reactivex:rxjava:1.2.6',
 		'com.netflix.feign:feign-core:8.18.0',
-		'com.netflix.feign:feign-gson:8.18.0'
+		'com.netflix.feign:feign-gson:8.18.0',
+		
+		'com.netflix.ribbon:ribbon:2.1.0',
+		'com.netflix.ribbon:ribbon-core:2.1.0',
+		'com.netflix.ribbon:ribbon-httpclient:2.1.0',
+		'com.netflix.ribbon:ribbon-transport:2.1.0',
+		'com.netflix.ribbon:ribbon-loadbalancer:2.1.0',
 	])
+	
+	compile (group: 'com.netflix.karyon', name: 'karyon2-eureka', version: '2.7.5'){
+	   exclude group: 'javax.servlet'
+	}
+	compile (group:  'com.netflix.ribbon', name: 'ribbon-eureka', version: "2.1.0") {
+    	exclude group: 'javax.servlet'
+	}
 	
 	testCompile([
 		'junit:junit:4.12',
