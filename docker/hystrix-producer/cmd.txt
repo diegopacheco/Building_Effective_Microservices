@@ -11,6 +11,6 @@ docker network create --subnet=172.10.0.0/16 packtNet
 
 docker run -d --net packtNet --ip 172.10.0.71 --name hystrixprod packt/hystrixproducer
 
-docker run --net packtNet --ip 172.10.0.71 diegopacheco/hystrixprod
+docker run -d --net packtNet --ip 172.10.0.71 --name hystrixprod diegopacheco/hystrixprod
 
 curl -v http://172.10.0.71:7070/

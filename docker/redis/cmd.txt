@@ -1,0 +1,3 @@
+docker network create --subnet=172.10.0.0/16 packtNet
+
+docker run -d --name redis --net packtNet --ip 172.10.0.40 redis
