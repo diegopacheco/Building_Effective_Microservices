@@ -1,0 +1,12 @@
+curl -s "http://localhost:9090/meetup?type=cook"
+curl -s "http://localhost:9090/meetup?type=tech"
+
+curl -s -X PUT "http://localhost:9090/meetup?name=Java8&type=tech"
+curl -s -X PUT "http://localhost:9090/meetup?name=Microservices&type=tech"
+curl -s -X PUT "http://localhost:9090/meetup?name=CloudNative&type=tech"
+curl -s -X PUT "http://localhost:9090/meetup?name=Kubernetes&type=tech"
+
+echo "hkeys tech" | redis-cli -h 172.10.0.40
+redis-cli -h 172.10.0.40
+keys *
+hget tech Java8
