@@ -10,3 +10,5 @@ echo "hkeys tech" | redis-cli -h 172.10.0.40
 redis-cli -h 172.10.0.40
 keys *
 hget tech Java8
+
+curl -s "http://localhost:9090/ops"
