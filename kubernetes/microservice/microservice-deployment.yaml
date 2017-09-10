@@ -20,6 +20,6 @@ spec:
         - name: redis_ip
           value: redis.default.svc.cluster.local
         - name: eureka_registry
-          value: "false"
+          value: "true"
         ports:
         - containerPort: 9090
