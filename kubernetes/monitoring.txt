@@ -1,3 +1,10 @@
+// Increase 1GB of Minikube memory(default is 2GB -> 3GB)
+//
+// PORTS:
+// Chronograf-UI: 8888
+// Kapacitor: 9092
+// InfluxDB: 8086
+
 // Install helm
 mkdir telemetry/ && cd telemetry/
 wget https://kubernetes-helm.storage.googleapis.com/helm-v2.5.1-linux-amd64.tar.gz
@@ -8,3 +15,7 @@ helm init --upgrade
 // Install Tick
 git clone https://github.com/diegopacheco/tick-charts.git && cd tick-charts/
 ./create.sh
+
+kubectl get pods -o wide --namespace tick
+kubectl port-forward dash-chronograf-$ID 36080:8888 --namespace tick
+// Alerts: https://hookbin.com/
