@@ -17,6 +17,12 @@ docker build -t hystrix:v1 .
 kubectl create -f hystrix/
 
 //
+// Hystrix-Producer
+//
+// Option 1
+kubectl create -f hystrix-producer/
+
+//
 // Eureka
 //
 // Option 1
