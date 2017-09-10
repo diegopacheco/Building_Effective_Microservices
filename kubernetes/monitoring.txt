@@ -1,0 +1,10 @@
+// Install helm
+mkdir telemetry/ && cd telemetry/
+wget https://kubernetes-helm.storage.googleapis.com/helm-v2.5.1-linux-amd64.tar.gz
+tar xvzf helm-v2.5.1-linux-amd64.tar.gz
+cd linux-amd64/
+helm init --upgrade
+
+// Install Tick
+git clone https://github.com/diegopacheco/tick-charts.git && cd tick-charts/
+./create.sh
