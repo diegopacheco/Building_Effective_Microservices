@@ -7,7 +7,7 @@ spec:
   template:
     metadata:
       labels:
-        app: redis
+        app: eureka
     spec:
       containers:
       - name: eureka
