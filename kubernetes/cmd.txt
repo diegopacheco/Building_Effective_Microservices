@@ -1,16 +1,34 @@
 //
-// Eureka
+// Minukube bootup
 //
 minikube start
 eval $(minikube docker-env)
-docker build -t eureka:v1 .
 
+//
+// Redis
+//
+kubectl create -f kubernetes/redis/
+
+//
+// Hystrix
+//
+// Option 1
+docker build -t hystrix:v1 .
+kubectl create -f kubernetes/hystrix/
+
+//
+// Eureka
+//
+// Option 1
+docker build -t eureka:v1 .
+kubectl create -f kubernetes/eureka/
+
+// Option 2
 kubectl run eureka --image=eureka:v1 --port=8080
 kubectl expose deployment eureka --type=LoadBalancer
 kubectl get deployments
 kubectl get pods
 kubectl describe pod eureka
-
 kubectl delete service eureka
 kubectl delete deployment eureka
 minikube stop
