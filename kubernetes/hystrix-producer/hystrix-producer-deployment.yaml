@@ -14,7 +14,7 @@ spec:
         image: diegopacheco/hystrixprod
         resources:
           requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 200m
+            memory: 200Mi
         ports:
         - containerPort: 8080

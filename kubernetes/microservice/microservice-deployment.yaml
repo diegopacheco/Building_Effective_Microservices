@@ -14,8 +14,8 @@ spec:
         image: microservice:v1
         resources:
           requests:
-            cpu: 100m
-            memory: 200Mi
+            cpu: 200m
+            memory: 300Mi
         env:
         - name: redis_ip
           value: redis.default.svc.cluster.local
