@@ -7,21 +7,21 @@ eval $(minikube docker-env)
 //
 // Redis
 //
-kubectl create -f kubernetes/redis/
+kubectl create -f redis/
 
 //
 // Hystrix
 //
 // Option 1
 docker build -t hystrix:v1 .
-kubectl create -f kubernetes/hystrix/
+kubectl create -f hystrix/
 
 //
 // Eureka
 //
 // Option 1
 docker build -t eureka:v1 .
-kubectl create -f kubernetes/eureka/
+kubectl create -f eureka/
 
 // Option 2
 kubectl run eureka --image=eureka:v1 --port=8080
