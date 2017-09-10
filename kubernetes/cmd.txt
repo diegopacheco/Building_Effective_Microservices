@@ -43,7 +43,7 @@ minikube stop
 // Microservice
 //
 rm -rf build/ && mkdir build/
-cp -r ../../* build/
+cp -r ../../code/* build/
 docker build -t microservice:v1 .
 kubectl create -f microservice/
 
