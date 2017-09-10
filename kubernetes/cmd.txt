@@ -42,18 +42,16 @@ minikube stop
 //
 // Microservice
 //
-mkdir build/
+rm -rf build/ && mkdir build/
 cp -r ../../* build/
-
-minikube start
-eval $(minikube docker-env)
 docker build -t microservice:v1 .
+kubectl create -f microservice/
 
+// Option 2
 kubectl run microservice --image=microservice:v1 --port=8080
 kubectl expose deployment microservice --type=LoadBalancer
 kubectl get deployments
 kubectl get pods
-
 kubectl delete service microservice
 kubectl delete deployment microservice
 minikube stop

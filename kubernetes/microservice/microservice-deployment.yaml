@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: microservice
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: microservice
+    spec:
+      containers:
+      - name: microservice
+        image: microservice:v1
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+        env:
+        - name: redis_ip
+          value: redis.default.svc.cluster.local
+        - name: eureka_registry
+          value: false
+        ports:
+        - containerPort: 9090
