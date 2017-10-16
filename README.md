@@ -2,6 +2,8 @@
 
 Video Workshop Series: Building Effective Microservices. Using Java 8 and NetflixOSS
 
+Buy the Video Series: https://www.packtpub.com/application-development/building-effective-microservices-video
+
 # Sections
 
 ## Section 1. Understanding Microservices
