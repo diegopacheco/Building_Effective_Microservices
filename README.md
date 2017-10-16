@@ -4,6 +4,30 @@ Video Workshop Series: Building Effective Microservices. Using Java 8 and Netfli
 
 # Sections
 
+## Section 1. Understanding Microservices
+ * Video 1.1 What are Microservices?(Theory) / Application Overview
+ * Video 1.2 Implementing the Docker & docker-compose
+ * Video 1.3 Setting up Java & Eureka
+ * Video 1.4 Exploring the Hystrix Environment
+
+## Section 2. Implementing Microservices
+ * Video 2.1 Creating Your Microservice with Gradle
+ * Video 2.2 Configuring the Server for your microservice
+ * Video 2.3 Setting up Client for discovery
+ * Video 2.4 Wire up the dependencies in Guice
+ * Video 2.5 Create the first resource(REST)
+ * Video 2.6 Communicating  between microservices  with REST
+
+## Section 3. Assembling Microservices
+ * Video 3.2 Making your microservices Observable
+ * Video 3.3 Adding client load-balancing for your Microservices
+ * Video 3.4 Implementing Dynamic Configuration with Archaius
+
+## Section 4. Testing & Deploying Microservices
+ * Video 4.1 Testing your Microservices with Junit and Mockito
+ * Video 4.2 Deploying your Microservice in Kubernetes(Minikube)
+ * Video 4.3 Monitoring and Alerting for Microservices
+
 ## About the author
 
 Diego Pacheco is an experienced Software Architect and DevOps practitioner with over 10 years of solid experience. He has led architecture teams using Open Source solutions such as Java, Scala, AWS Cloud, Akka, Cassandra, Redis, ActiveMQ, NetflixOSS Stack: Simian Army, RxJava, Karyon, Eureka, and Ribbon on Big Customers in Brazil, London, Barcelona, India, and the USA. Diego has a passion for functional programming and is currently working as a Software Architect/Agile Coach with Scala, Akka, and NetflixOSS.
